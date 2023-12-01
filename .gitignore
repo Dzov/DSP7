@@ -1,3 +1,6 @@
 data
 Ressources/
 .DS_Store
+mlruns
+mlartifacts
+plots

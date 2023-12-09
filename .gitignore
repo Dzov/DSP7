@@ -4,3 +4,4 @@ Ressources/
 mlruns
 mlartifacts
 plots
+api/__pycache__

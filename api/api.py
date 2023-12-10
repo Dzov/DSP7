@@ -32,24 +32,29 @@ def get_client_information(client_id):
 
     client_info = data[data.SK_ID_CURR == int(client_id)]
     if client_info.empty:
-        raise HTTPException(status_code=404, detail=f"Client ID {client_id} not found.")
+        raise HTTPException(
+            status_code=404, detail=f"Client ID {client_id} not found.")
 
     return client_info.values
 
 
-@api.post('/predict', response_model=ResponseItem)
-async def predict_loan_eligibility(item: BodyItem):
-    try: 
-        client_info = get_client_information(item.clientId)
-    except HTTPException as e: 
+def predict_loan_eligibility(client_id: int):
+    try:
+        client_info = get_client_information(client_id)
+    except HTTPException as e:
         raise
-    
+
     proba = get_model().predict_proba(client_info)[:, 1]
     prediction = (proba > 0.1).astype(int)
-    response_data = {
-        "clientId": item.clientId,
+    return {
+        "clientId": client_id,
         "probability": np.round(proba, 2).tolist(),
         "predictionThreshold": 0.1,
         "prediction": prediction.tolist(),
     }
+
+
+@api.post('/predict', response_model=ResponseItem)
+async def execute(item: BodyItem):
+    response_data = predict_loan_eligibility(item.clientId)
     return JSONResponse(content=response_data)

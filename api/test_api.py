@@ -7,11 +7,15 @@ import main
 
 client = TestClient(main.api)
 
-data = pd.read_csv(os.path.join('api', 'sample_client_data.csv'))
+data = pd.read_csv(os.path.join('data', 'sample_client_data.csv'))
 data.drop(columns='Unnamed: 0', inplace=True)
 
 def get_client_id():
     return int(data.loc[0, 'SK_ID_CURR'])
+
+def test_home():
+    response = client.get('/')
+    assert response.status_code == 200
 
 def test_post_predict():
     client_id = get_client_id()

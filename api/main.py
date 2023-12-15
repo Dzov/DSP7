@@ -21,12 +21,12 @@ class ResponseItem(BaseModel):
 
 
 def get_model():
-    lgbm = open('api/model.pkl', 'rb')
+    lgbm = open('model.pkl', 'rb')
     return pickle.load(lgbm)
 
 
 def get_client_information(client_id):
-    data_path = os.path.join('api', 'sample_client_data.csv')
+    data_path = os.path.join('data', 'sample_client_data.csv')
     data = pd.read_csv(data_path)
     data.drop(columns='Unnamed: 0', inplace=True)
 
@@ -53,8 +53,11 @@ def predict_loan_eligibility(client_id: int):
         "prediction": prediction.tolist(),
     }
 
+@api.get('/')
+async def home():
+    return {'message': "Prêt à Dépenser"}
 
 @api.post('/predict', response_model=ResponseItem)
-async def execute(item: BodyItem):
+async def predict(item: BodyItem):
     response_data = predict_loan_eligibility(item.clientId)
     return JSONResponse(content=response_data)

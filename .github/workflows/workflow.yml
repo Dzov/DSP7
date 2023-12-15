@@ -7,12 +7,14 @@ on:
       
 jobs:
   build-and-deploy:
-    defaults:
-      run: ls -R
-      working-directory: api/
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
     
     steps:
+    - name: Checkout GitHub Actions
+      uses: actions/checkout@main
     
     - name: Install dependencies
       run: |
@@ -22,13 +24,8 @@ jobs:
 
     - name: Test with pytest
       run: |
-        pip install pytest
+        pip install pytest httpx
         pytest test_api.py 
-
-
-    - name: Checkout GitHub Actions
-      uses: actions/checkout@main
-      
       
     - name: Login via Azure CLI
       uses: azure/login@v1

@@ -7,6 +7,9 @@ on:
       
 jobs:
   build-and-deploy:
+    defaults:
+      run: ls -R
+      working-directory: api/
     runs-on: ubuntu-latest
     
     steps:
@@ -20,7 +23,7 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest
-        pytest tests.py 
+        pytest test_api.py 
 
 
     - name: Checkout GitHub Actions

@@ -1,5 +1,4 @@
 __pycache__
-test_api.py
-.env
 .pytest_cache
+tests/*
 .github/*

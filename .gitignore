@@ -1,9 +1,10 @@
-Ressources/
 .DS_Store
-mlruns
-mlartifacts
-plots
+
 api/__pycache__
-api/.env
-data
+api/.pytest_cache
 !api/data
+
+notebooks/mlruns
+notebooks/mlartifacts
+notebooks/plots
+notebooks/data

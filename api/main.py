@@ -21,7 +21,7 @@ class ResponseItem(BaseModel):
 
 
 def get_model():
-    lgbm = open('model.pkl', 'rb')
+    lgbm = open('model/model.pkl', 'rb')
     return pickle.load(lgbm)
 
 

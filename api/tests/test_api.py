@@ -3,7 +3,7 @@ import os
 import json
 import numpy as np
 from fastapi.testclient import TestClient
-import main
+from .. import main
 
 client = TestClient(main.api)
 

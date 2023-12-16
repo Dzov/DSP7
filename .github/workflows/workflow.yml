@@ -36,7 +36,7 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest httpx
-        pytest test_api.py 
+        pytest tests/test_api.py 
 
     
     - name: Login via Azure CLI

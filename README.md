@@ -48,6 +48,8 @@ A single github repository was used for the entire project, not just the api. Th
 - `notebooks/`
   - `notebook_modelisation` - model training and testing
   - `notebook_test_api` - notebook to test production api
+  - `notebook_evidently` - notebook to create the data drift report
+  - `data_drift_report` - html page containing the data drift report
   - `data/` 
     - `csv` - data used by modeling notebook
 - `api/`

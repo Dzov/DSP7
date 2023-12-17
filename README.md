@@ -36,6 +36,12 @@ We then configured Github Actions to run these steps everytime a new commit is p
 
 Github Actions was also configured to run the API unit and integration tests before the build and deploy steps in order to make sure the app works ass expected before being pushed to production. 
 
+## Data Drift Analysis
+
+We then create a data drift report using Evidently, based on a sample of the historical data (the data used to train the model) and the current data (the data used to make predictions using the API). 
+
+The report was saved in HTML format. 
+
 ## Project Folder Structure
 
 A single github repository was used for the entire project, not just the api. The project was organized as follows: 

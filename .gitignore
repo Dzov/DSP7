@@ -4,7 +4,8 @@ api/__pycache__
 api/.pytest_cache
 !api/data
 
-notebooks/mlruns
-notebooks/mlartifacts
+mlruns
+mlartifacts
+
 notebooks/plots
 notebooks/data
